@@ -3,59 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Motion Website</title>
+<title>Siddharth Pal | Video Editor</title>
 
 <style>
 
-/* RESET */
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
+font-family:Arial,Helvetica,sans-serif;
 }
-
-/* BACKGROUND ANIMATION */
 
 body{
-height:100vh;
-overflow-x:hidden;
-background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#000428);
-background-size:400% 400%;
-animation:bgmove 12s ease infinite;
+background:#0b0f19;
 color:white;
-}
-
-@keyframes bgmove{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
+overflow-x:hidden;
 }
 
 /* NAVBAR */
 
 nav{
 position:fixed;
-top:0;
 width:100%;
-padding:20px 60px;
+top:0;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.3);
+padding:20px 60px;
+background:rgba(0,0,0,0.4);
 backdrop-filter:blur(10px);
 z-index:1000;
 }
 
 nav h1{
-font-size:24px;
+font-size:20px;
 letter-spacing:2px;
 }
 
 nav ul{
 display:flex;
-list-style:none;
 gap:30px;
+list-style:none;
 }
 
 nav ul li{
@@ -64,8 +52,7 @@ transition:.3s;
 }
 
 nav ul li:hover{
-color:#00ffff;
-transform:scale(1.1);
+color:#00eaff;
 }
 
 /* HERO */
@@ -83,18 +70,93 @@ padding:20px;
 .hero h2{
 font-size:60px;
 margin-bottom:20px;
-animation:fadeup 1.5s ease;
+animation:fade 1.2s ease;
 }
 
 .hero p{
-font-size:20px;
 max-width:600px;
+opacity:.8;
 margin-bottom:40px;
-opacity:0.8;
-animation:fadeup 2s ease;
 }
 
-@keyframes fadeup{
+.btn{
+padding:14px 40px;
+border:none;
+border-radius:40px;
+background:#00eaff;
+color:black;
+cursor:pointer;
+font-weight:bold;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px #00eaff;
+}
+
+/* SECTION */
+
+.section{
+padding:120px 10%;
+text-align:center;
+}
+
+.grid{
+margin-top:60px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:#12192b;
+padding:20px;
+border-radius:15px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 20px rgba(0,234,255,.4);
+}
+
+.card video{
+width:100%;
+border-radius:10px;
+}
+
+/* SKILLS */
+
+.skills{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+margin-top:30px;
+}
+
+.skill{
+padding:10px 20px;
+background:#12192b;
+border-radius:30px;
+}
+
+/* CONTACT */
+
+.contact{
+margin-top:40px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+opacity:.6;
+}
+
+/* ANIMATION */
+
+@keyframes fade{
 from{
 opacity:0;
 transform:translateY(40px);
@@ -105,200 +167,92 @@ transform:translateY(0);
 }
 }
 
-/* BUTTON */
-
-.btn{
-padding:15px 40px;
-border:none;
-border-radius:50px;
-background:linear-gradient(45deg,#00ffff,#0072ff);
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:0.4s;
-box-shadow:0 0 15px rgba(0,255,255,0.5);
-}
-
-.btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 40px rgba(0,255,255,1);
-}
-
-/* SECTION */
-
-.section{
-padding:120px 10%;
-text-align:center;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-margin-top:50px;
-}
-
-.card{
-padding:40px;
-border-radius:20px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(10px);
-transition:.4s;
-}
-
-.card:hover{
-transform:translateY(-10px) scale(1.03);
-box-shadow:0 0 30px rgba(0,255,255,0.5);
-}
-
-/* PARTICLES */
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
-
-/* FOOTER */
-
-footer{
-padding:40px;
-text-align:center;
-opacity:.6;
-}
-
 </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
-
 <nav>
-<h1>VOID</h1>
+<h1>SIDDHARTH</h1>
 <ul>
 <li onclick="scrollToSection('home')">Home</li>
-<li onclick="scrollToSection('about')">About</li>
-<li onclick="scrollToSection('services')">Services</li>
+<li onclick="scrollToSection('portfolio')">Portfolio</li>
+<li onclick="scrollToSection('skills')">Skills</li>
+<li onclick="scrollToSection('contact')">Contact</li>
 </ul>
 </nav>
 
 <section id="home" class="hero">
-<h2>Next Generation Website</h2>
-<p>Modern motion UI with animated background, glowing elements and interactive effects built using pure HTML CSS and JavaScript.</p>
-<button class="btn">Explore</button>
+<h2>Video Editor</h2>
+<p>I create engaging YouTube videos, Shorts, Reels and social media content using Premiere Pro and After Effects.</p>
+<button class="btn" onclick="scrollToSection('portfolio')">View My Work</button>
 </section>
 
-<section id="about" class="section">
-<h2>About</h2>
+<section id="portfolio" class="section">
+<h2>My Work</h2>
 
-<div class="cards">
+<div class="grid">
 
 <div class="card">
-<h3>Motion UI</h3>
-<p>Smooth animations and transitions to create futuristic user interfaces.</p>
+<video controls>
+<source src="video1.mp4" type="video/mp4">
+</video>
+<p>YouTube Video Edit</p>
 </div>
 
 <div class="card">
-<h3>Fast</h3>
-<p>Pure JavaScript without heavy frameworks for maximum performance.</p>
+<video controls>
+<source src="video2.mp4" type="video/mp4">
+</video>
+<p>Short Form Reel</p>
 </div>
 
 <div class="card">
-<h3>Modern</h3>
-<p>Glassmorphism, glow effects and dynamic layouts.</p>
+<video controls>
+<source src="video3.mp4" type="video/mp4">
+</video>
+<p>Motion Graphics Edit</p>
 </div>
 
 </div>
 </section>
 
-<section id="services" class="section">
-<h2>Services</h2>
+<section id="skills" class="section">
+<h2>Skills</h2>
 
-<div class="cards">
-
-<div class="card">
-<h3>Web Design</h3>
-<p>Clean responsive design systems.</p>
+<div class="skills">
+<div class="skill">Premiere Pro</div>
+<div class="skill">After Effects</div>
+<div class="skill">YouTube Editing</div>
+<div class="skill">Shorts / Reels</div>
+<div class="skill">Motion Graphics</div>
+<div class="skill">Color Grading</div>
 </div>
 
-<div class="card">
-<h3>UI Animation</h3>
-<p>Interactive motion graphics for websites.</p>
-</div>
+</section>
 
-<div class="card">
-<h3>Creative Coding</h3>
-<p>Custom visual effects with JavaScript.</p>
-</div>
+<section id="contact" class="section">
+<h2>Contact</h2>
 
+<div class="contact">
+<p>Email: siddharth@example.com</p>
+<p>Upwork: upwork.com/freelancers/siddharth</p>
+<p>Instagram: @yourhandle</p>
 </div>
 
 </section>
 
 <footer>
-© 2026 Motion Website
+© 2026 Siddharth Pal Portfolio
 </footer>
 
 <script>
-
-/* SMOOTH SCROLL */
 
 function scrollToSection(id){
 document.getElementById(id).scrollIntoView({
 behavior:"smooth"
 });
 }
-
-/* PARTICLE SYSTEM */
-
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let particles=[];
-
-for(let i=0;i<120;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2,
-speedX:(Math.random()-0.5)*0.5,
-speedY:(Math.random()-0.5)*0.5
-});
-}
-
-function animate(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-particles.forEach(p=>{
-
-p.x+=p.speedX;
-p.y+=p.speedY;
-
-if(p.x<0||p.x>canvas.width)p.speedX*=-1;
-if(p.y<0||p.y>canvas.height)p.speedY*=-1;
-
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-ctx.fillStyle="rgba(0,255,255,0.7)";
-ctx.fill();
-
-});
-
-requestAnimationFrame(animate);
-}
-
-animate();
-
-window.addEventListener("resize",()=>{
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-});
 
 </script>
 
