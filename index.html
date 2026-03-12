@@ -3,180 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeuroPlay Technologies</title>
+<title>Motion Website</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
-    line-height: 1.6;
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
 }
 
-header {
-    padding: 50px 20px;
-    text-align: center;
-    background: linear-gradient(90deg, #1e293b, #0f172a);
+/* BACKGROUND ANIMATION */
+
+body{
+height:100vh;
+overflow-x:hidden;
+background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#000428);
+background-size:400% 400%;
+animation:bgmove 12s ease infinite;
+color:white;
 }
 
-h1 {
-    margin: 0;
-    font-size: 42px;
+@keyframes bgmove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
 
-p {
-    color: #cbd5e1;
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.3);
+backdrop-filter:blur(10px);
+z-index:1000;
 }
 
-.games {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    padding: 50px 20px;
+nav h1{
+font-size:24px;
+letter-spacing:2px;
 }
 
-.card {
-    background: #1e293b;
-    width: 300px;
-    border-radius: 12px;
-    padding: 20px;
-    transition: 0.3s ease;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    text-align: center;
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+nav ul li{
+cursor:pointer;
+transition:.3s;
 }
 
-.card img {
-    width: 100%;
-    border-radius: 8px;
+nav ul li:hover{
+color:#00ffff;
+transform:scale(1.1);
 }
 
-.btn {
-    margin-top: 15px;
-    padding: 10px 18px;
-    background: #2563eb;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
 }
 
-.btn:hover {
-    background: #1d4ed8;
+.hero h2{
+font-size:60px;
+margin-bottom:20px;
+animation:fadeup 1.5s ease;
 }
 
-.section {
-    padding: 60px 20px;
-    max-width: 900px;
-    margin: auto;
+.hero p{
+font-size:20px;
+max-width:600px;
+margin-bottom:40px;
+opacity:0.8;
+animation:fadeup 2s ease;
 }
 
-.section h2 {
-    text-align: center;
-    margin-bottom: 20px;
+@keyframes fadeup{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
-.privacy-box {
-    background: #1e293b;
-    padding: 25px;
-    border-radius: 10px;
-    text-align: left;
+/* BUTTON */
+
+.btn{
+padding:15px 40px;
+border:none;
+border-radius:50px;
+background:linear-gradient(45deg,#00ffff,#0072ff);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 0 15px rgba(0,255,255,0.5);
 }
 
-footer {
-    padding: 30px;
-    background: #111827;
-    text-align: center;
-    font-size: 14px;
-    color: #94a3b8;
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 40px rgba(0,255,255,1);
 }
+
+/* SECTION */
+
+.section{
+padding:120px 10%;
+text-align:center;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:50px;
+}
+
+.card{
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 30px rgba(0,255,255,0.5);
+}
+
+/* PARTICLES */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* FOOTER */
+
+footer{
+padding:40px;
+text-align:center;
+opacity:.6;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>NeuroPlay Technologies</h1>
-    <p>We build immersive mobile gaming experiences.</p>
-</header>
+<canvas id="particles"></canvas>
 
-<section class="games">
+<nav>
+<h1>VOID</h1>
+<ul>
+<li onclick="scrollToSection('home')">Home</li>
+<li onclick="scrollToSection('about')">About</li>
+<li onclick="scrollToSection('services')">Services</li>
+</ul>
+</nav>
 
-    <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Torque Legends">
-        <h2>Torque Legends</h2>
-        <p>High speed racing experience with realistic driving physics.</p>
-        <button class="btn" onclick="openGame('https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME')">
-            View on Play Store
-        </button>
-    </div>
-
-    <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Grand Metropolis RP">
-        <h2>Grand Metropolis RP</h2>
-        <p>Open world roleplay game with real-life simulation elements.</p>
-        <button class="btn" onclick="openGame('https://play.google.com')">
-            Coming Soon
-        </button>
-    </div>
-
+<section id="home" class="hero">
+<h2>Next Generation Website</h2>
+<p>Modern motion UI with animated background, glowing elements and interactive effects built using pure HTML CSS and JavaScript.</p>
+<button class="btn">Explore</button>
 </section>
 
-<section class="section">
-    <h2>Torque Legends – Privacy Policy</h2>
+<section id="about" class="section">
+<h2>About</h2>
 
-    <div class="privacy-box">
-        <p><strong>Effective Date:</strong> <span id="date"></span></p>
+<div class="cards">
 
-        <p>NeuroPlay Technologies built Torque Legends as a Free-to-Play game.
-        This service is provided by NeuroPlay Technologies and is intended for use as is.</p>
+<div class="card">
+<h3>Motion UI</h3>
+<p>Smooth animations and transitions to create futuristic user interfaces.</p>
+</div>
 
-        <p><strong>Information Collection and Use</strong><br>
-        Torque Legends does not collect personally identifiable information directly.
-        The game may use third-party services such as Google Play Services or advertising networks,
-        which may collect limited device-related data to improve user experience.</p>
+<div class="card">
+<h3>Fast</h3>
+<p>Pure JavaScript without heavy frameworks for maximum performance.</p>
+</div>
 
-        <p><strong>Ads</strong><br>
-        This game may display advertisements provided by third-party ad networks.
-        These services may collect anonymized data for ad personalization.</p>
+<div class="card">
+<h3>Modern</h3>
+<p>Glassmorphism, glow effects and dynamic layouts.</p>
+</div>
 
-        <p><strong>Security</strong><br>
-        We value your trust and strive to use commercially acceptable means of protecting your data.
-        However, no method of transmission over the internet is 100% secure.</p>
+</div>
+</section>
 
-        <p><strong>Children’s Privacy</strong><br>
-        Torque Legends does not knowingly collect personal data from children under 13.</p>
+<section id="services" class="section">
+<h2>Services</h2>
 
-        <p><strong>Changes to This Policy</strong><br>
-        We may update our Privacy Policy from time to time.
-        Any changes will be posted on this page.</p>
+<div class="cards">
 
-        <p><strong>Contact Us</strong><br>
-        If you have any questions or suggestions about our Privacy Policy,
-        contact us at: <br>
-        <strong>neuroplaytechnologies@gmail.com</strong>
-        </p>
-    </div>
+<div class="card">
+<h3>Web Design</h3>
+<p>Clean responsive design systems.</p>
+</div>
+
+<div class="card">
+<h3>UI Animation</h3>
+<p>Interactive motion graphics for websites.</p>
+</div>
+
+<div class="card">
+<h3>Creative Coding</h3>
+<p>Custom visual effects with JavaScript.</p>
+</div>
+
+</div>
+
 </section>
 
 <footer>
-    © <span id="year"></span> NeuroPlay Technologies. All rights reserved.
+© 2026 Motion Website
 </footer>
 
 <script>
-function openGame(url) {
-    window.open(url, "_blank");
+
+/* SMOOTH SCROLL */
+
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({
+behavior:"smooth"
+});
 }
 
-document.getElementById("year").innerText = new Date().getFullYear();
-document.getElementById("date").innerText = new Date().toLocaleDateString();
+/* PARTICLE SYSTEM */
+
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<120;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2,
+speedX:(Math.random()-0.5)*0.5,
+speedY:(Math.random()-0.5)*0.5
+});
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+
+p.x+=p.speedX;
+p.y+=p.speedY;
+
+if(p.x<0||p.x>canvas.width)p.speedX*=-1;
+if(p.y<0||p.y>canvas.height)p.speedY*=-1;
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fillStyle="rgba(0,255,255,0.7)";
+ctx.fill();
+
+});
+
+requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+});
+
 </script>
 
 </body>
